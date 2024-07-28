@@ -1,5 +1,5 @@
 # dl_nutshell
-Personal repository for Python implementation codes and mathematical understanding of Deep Learning models in a nutshell.
+This repository contains python implementation codes of most common deep learning models and fundamental mathematical concepts behind them.
 
 
 ## Books / References
