@@ -16,7 +16,8 @@ This repository contains python implementation codes of most common deep learnin
 - [ ] Recurrent Neural Network
 
 
-#### References
+#### Reference Projects
+Please go to my other GitHub repository [Deep Learning Projects](https://github.com/baksho/deep-learning-projects) for different projects using deep learning algorithms.
 
 
 #### Books
