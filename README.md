@@ -15,6 +15,8 @@ This repository contains python implementation codes of most common deep learnin
 - [X] Convolutional Neural Network
 - [ ] Recurrent Neural Network
 
+All the example codes are in the folder [example codes](https://github.com/baksho/dl-nutshell/tree/main/example%20codes), all the PDFs explaning the corresponding concepts are in the [pdf](https://github.com/baksho/dl-nutshell/tree/main/pdf) folder, and all the LaTeX projects (for writing the PDFs) are available in the folder [LaTeX projects](https://github.com/baksho/dl-nutshell/tree/main/LaTeX%20projects).
+
 
 #### Reference Projects
 Please go to my other GitHub repository [Deep Learning Projects](https://github.com/baksho/deep-learning-projects) for different projects using deep learning algorithms.
