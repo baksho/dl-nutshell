@@ -1,0 +1,110 @@
+% Main file: main.tex
+% Compile this file to build the full document
+
+\documentclass[a4paper,12pt]{book} % Use book class for structured documents
+\usepackage[utf8]{inputenc}        % Support for UTF-8 characters
+\usepackage{amsmath, amssymb}      % Mathematical symbols and equations
+\usepackage{graphicx}              % For including images
+\usepackage[font=scriptsize]{caption}
+\usepackage{hyperref}              % For hyperlinks
+% \usepackage[super]{natbib}         % Bibliography support
+\usepackage{geometry}              % Page layout customization
+\usepackage{titlesec}              % For customizing section titles
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+% \usepackage{cite}
+\usepackage{xcolor}
+% Define a custom highlight command
+\newcommand{\highlight}[1]{\colorbox{yellow}{#1}}
+\usepackage{soul}
+
+\makeatletter
+\renewcommand\@biblabel[1]{[#1]} % Adds brackets in the bibliography
+\renewcommand\@cite[2]{\textsuperscript{[#1]}} % Adds brackets in the superscript citation
+\makeatother
+
+% Page layout settings
+\geometry{margin=1in}
+
+% Customizing Chapter Heading Style
+\titleformat{\chapter}[block] % 'block' means the title will be on its own line
+  {\normalfont\Huge\bfseries} % Font settings for the chapter title
+  {\thechapter}               % Numbering format (e.g., "1")
+  {1em}                       % Space between the number and title
+  {}                          % No prefix for the chapter title
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[LO,RE]{\small\nouppercase{\rightmark}}
+\fancyfoot{} % clear all footer fields
+\fancyhead[LE,RO]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Title Page
+\title{\textbf{Convolutional Neural Networks (CNNs)}}
+\author{Suvinava Basak}
+\date{\today}
+\maketitle
+
+% Blank Page before Summary
+\cleardoublepage
+% \thispagestyle{empty} % Removes page number
+% This is a blank page
+
+% Customizing Summary Heading Size
+\titleformat{\section}[block]
+{\normalfont\Huge\bfseries}{}{0pt}{}
+
+% Summary Page
+\newpage
+\vspace*{5cm} % Push the content to the middle of the page
+\section*{Abstract}
+% \addcontentsline{toc}{section}{Summary} % Add to Table of Contents
+Artificial intelligence has been making tremendous strides in closing the gap between human and computer capabilities. Both amateurs and researchers work on many facets of the area to achieve incredible results. The field of computer vision is one of several such fields.
+The goal of this field is to make it possible for machines to see and perceive the world similarly to humans. They will then be able to use this knowledge for a variety of tasks, including Natural Language Processing, Media Recreation, Image and Video Recognition, Image Analysis and Classification, Recommendation Systems, and more. Deep Learning's contributions to computer vision have been developed and refined throughout time, primarily using an algorithm, \textbf{Convolutional Neural Network}.
+
+\setlength{\parskip}{1em} % Adds vertical space between paragraphs
+\setlength{\parindent}{15pt} % Removes paragraph indentation
+In this book, we will dig deeper into the realm of CNN and explore many things, starting from the \textbf{historical perspective} to the building blocks of a CNN along with their \textbf{mathematical foundations}. We will also look at different CNN architectures, e.g., \textbf{AlexNet}, \textbf{VGGNet}, \textbf{GoogleNet}, etc. and some of the real-life applications. Finally, we end this book with some of the current research and future trends of CNNs.
+
+% Reverting Section Heading Size
+\titleformat{\section}[block]
+{\normalfont\large\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Table of Contents
+\newpage
+\tableofcontents
+\newpage
+
+% Include chapters
+
+\include{chapters/chapter1} % Introduction
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+
+
+% Bibliography Section
+\bibliographystyle{ieeetr} % Style for bibliography
+% \bibliographystyle{unsrt} % Style for bibliography
+\bibliography{bibliography} % References in bibliography.bib
+
+\textbf{Further references}\\\\
+Apart from the above references, several YouTube videos (by Brandon Rohrer \href{https://www.youtube.com/watch?v=JB8T_zN7ZC0}{[1]} \href{https://www.youtube.com/watch?v=FmpDIaiMIeA}{[2]}, \href{https://www.youtube.com/watch?v=2-Ol7ZB0MmU}{Serrano.Academy}, \href{https://www.youtube.com/watch?v=KuXjwB4LzSA}{3Blue1Brown}, \href{https://www.youtube.com/watch?v=YRhxdVk_sIs}{deeplizard}, \href{https://www.youtube.com/watch?v=8rrHTtUzyZA}{The Julia Programmina Language}, \href{https://www.youtube.com/watch?v=2xqkSUhmmXU}{MIT}, \href{https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv}{Standford University}) are relevant to know more about Convolutional Neural Networks in detail.
+
+There are also some blogs on \url{medium.com} which can serve as a good starting point to delve deeper into the realm of CNN:
+\begin{itemize}
+    \item \href{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}{\textit{A Comprehensive Guide to Convolutional Neural Networks — the ELI5 way}} by Sumit Saha
+    \item \href{https://towardsdatascience.com/types-of-convolutions-in-deep-learning-717013397f4d}{\textit{An Introduction to different Types of Convolutions in Deep Learning}} by Paul-Louis Pröve
+    \item \href{https://towardsdatascience.com/gentle-dive-into-math-behind-convolutional-neural-networks-79a07dd44cf9}{\textit{Gentle Dive into Math Behind Convolutional Neural Networks}} by Piotr Skalski
+    \item \href{https://towardsdatascience.com/intuitively-understanding-convolutions-for-deep-learning-1f6f42faee1}{\textit{Intuitively Understanding Convolutions for Deep Learning}} by Irhum Shafkat
+\end{itemize}
+
+\setlength{\parskip}{5em} \textbf{Happy Learning!}
+
+\end{document}

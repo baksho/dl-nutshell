@@ -1,0 +1,100 @@
+\chapter{Historical Perspective of CNNs}\label{chp:2}
+\section{Origin of CNNs}
+
+Convolutional Neural Networks (CNNs) trace their origins to early work in neural networks and pattern recognition. The concept of using convolutions for image analysis emerged from the broader study of artificial neural networks.
+
+\textbf{Early Pioneers and Inspirations}
+\begin{itemize}
+    \item \textbf{1970s-1980s: Neocognitron and Hebbian Learning}\\
+    The Neocognitron, proposed by Kunihiko Fukushima in 1980, is often considered one of the first models that prefigured CNNs. It introduced the idea of hierarchical layers that could extract visual features, similar to the function of the human visual system. However, the Neocognitron lacked a mechanism for training via backpropagation.\cite{fukushima1980neocognitron}
+
+    \item \textbf{1986: Backpropagation and Neural Networks}\\
+    The introduction of backpropagation by David Rumelhart, Geoffrey Hinton, and Ronald Williams in 1986 was a significant advancement. It provided a practical way to train multilayer networks by calculating gradients and adjusting weights, forming the foundation for modern CNN training.\cite{rumelhart1986learning}
+\end{itemize}
+
+\section{Key Milestones in CNN Development}
+
+\subsection{LeNet (1998) - The First Major CNN}
+In 1998, \textbf{Yann LeCun} and his team introduced \textbf{LeNet-5}, a CNN architecture that successfully tackled the problem of digit recognition, particularly for the \textbf{MNIST dataset}. LeNet’s architecture demonstrated the potential of CNNs in recognizing visual patterns.\cite{lecun1998gradient} \cite{lecun1990handwritten}
+
+\textbf{Key components of LeNet-5}:
+\begin{itemize}
+    \item \textbf{Convolutional Layers}: Extracting low-level features such as edges.
+    \item \textbf{Pooling Layers}: Reducing the size of the feature maps while retaining essential information.
+    \item \textbf{Fully Connected Layers}: Final decision-making layers for classification.
+\end{itemize}
+
+\subsection{AlexNet (2012) - A Breakthrough in Deep Learning}
+The introduction of \textbf{AlexNet} by \textbf{Alex Krizhevsky}, \textbf{Ilya Sutskever}, and \textbf{Geoffrey Hinton} in 2012 marked a breakthrough in deep learning, achieving a significant performance improvement in the \textbf{ImageNet Large Scale Visual Recognition Challenge (ILSVRC)}. This success was largely due to the deep architecture and the use of GPUs for training, which accelerated the computation process.\cite{krizhevsky2012imagenet}
+
+\textbf{Key features in AlexNet}:
+\begin{itemize}
+    \item \textbf{ReLU Activation}: Allowed faster convergence compared to traditional activation functions like sigmoid.
+    \item \textbf{GPU Utilization}: Enabled the training of a large model on a massive dataset.
+\end{itemize}
+
+\subsection{VGGNet (2014) - Deeper Architectures}
+\textbf{VGGNet}, developed by the \textbf{Visual Geometry Group (VGG)} at Oxford, demonstrated that deeper CNN architectures could provide better results. With 16 to 19 layers, VGGNet showed that increasing depth helped improve the model’s ability to recognize more complex patterns.\cite{simonyan2014very}
+
+\textbf{Key features of VGGNet}:
+\begin{itemize}
+    \item \textbf{Uniform 3x3 Convolutional Filters}: Simplified the architecture while maintaining performance.
+    \item \textbf{Increased Depth}: Leveraging more layers enabled the model to capture more detailed features.
+\end{itemize}
+
+\subsection{GoogleNet, InceptionV1 (2014)}
+\textbf{GoogleNet (InceptionV1)}, introduced in 2014 by researchers at Google, is a groundbreaking convolutional neural network (CNN) architecture designed for efficient, large-scale image recognition tasks. Its key innovation is the \textbf{Inception module}, which performs multi-scale convolutions (1x1, 3x3, and 5x5) in parallel, allowing the network to capture features at various scales while maintaining computational efficiency. To reduce the model's complexity, 1x1 convolutions are used for dimensionality reduction before applying larger convolutions. With 22 layers, GoogleNet was deeper than previous architectures like AlexNet, yet more computationally efficient. This architecture won the 2014 ILSVRC (ImageNet Large Scale Visual Recognition Challenge) with state-of-the-art accuracy, paving the way for further advancements in deep learning.\cite{szegedy2015googlenet}
+
+\textbf{Key features of GoogleNet}:
+\begin{itemize}
+    \item Introduced the \textbf{Inception module}, which performs multi-scale convolutions in parallel (1x1, 3x3, 5x5).
+    \item Used 1x1 convolutions to reduce dimensionality and computational cost.
+    \item Much deeper (22 layers) but computationally efficient compared to VGGNet.
+\end{itemize}
+
+\subsection{ResNet (2015) - Solving Vanishing Gradient Problem}
+The introduction of \textbf{ResNet} by \textbf{Kaiming He} and colleagues in 2015 solved the problem of training very deep networks. By using \textbf{skip connections}, ResNet alleviated the vanishing gradient problem, allowing for networks with up to 152 layers.\cite{he2015deep}
+
+\textbf{Key features of ResNet}:
+\begin{itemize}
+    \item \textbf{Residual Learning}: Skip connections help in passing gradients efficiently during backpropagation.
+    \item \textbf{Batch Normalization}: Improved the stability of the training process.
+\end{itemize}
+
+\subsection{MobileNet (2017)}
+\textbf{MobileNet} is a family of lightweight convolutional neural network (CNN) architectures designed by Google for efficient image classification on mobile and embedded devices with limited computational resources. It is optimized to achieve a good trade-off between accuracy and computational cost, making it suitable for real-time applications on devices with constraints such as smartphones, drones, and IoT devices.\cite{howard2017mobilenets}
+
+\textbf{Key features of MobileNet}:
+\begin{itemize}
+    \item \textbf{Depthwise Separable Convolutions}: Reduces computation by splitting convolutions into depthwise and pointwise operations.
+    \item \textbf{Width Multiplier}: Scales the number of channels in each layer to adjust model size and performance.
+    \item \textbf{Resolution Multiplier}: Adjusts the input image resolution for balancing accuracy and computational cost.
+    \item \textbf{Efficient for Real-Time Applications}: Optimized for mobile devices, suitable for tasks like image classification and object detection.
+\end{itemize}
+
+\subsection{EfficientNet (2019)}
+\textbf{EfficientNet} is a family of convolutional neural networks introduced by \textbf{Mingxing Tan} and \textbf{Quoc V. Le} in 2019, designed to achieve state-of-the-art performance while optimizing efficiency. It uses a novel \textbf{compound scaling method} that uniformly scales a network's depth, width, and input resolution in a balanced way to maximize accuracy and efficiency. Unlike previous models that scale only one dimension (e.g., depth or width), EfficientNet finds the best combination of all three. The base model, \textbf{EfficientNet-B0}, is built using a lightweight architecture with \textbf{MBConv blocks} (inspired by MobileNet), and larger variants (B1–B7) scale up for better accuracy while maintaining computational efficiency. EfficientNet, through proper scaling, achieves higher accuracy on benchmarks like ImageNet with significantly fewer parameters and FLOPs compared to models like ResNet and Inception, making it ideal for both resource-constrained devices and high-performance applications.\cite{efficientnet}
+
+\textbf{Key features of EfficientNet}:
+\begin{itemize}
+    \item Introduced a \textbf{compound scaling method} to optimize the trade-off between network depth, width, and resolution.
+    \item Achieved state-of-the-art performance on ImageNet with fewer parameters and FLOPs compared to ResNet and Inception-based models.
+    \item Includes variants from EfficientNet-B0 to B7, each scaling up computational cost and accuracy.
+\end{itemize}
+
+\section{CNNs in the Modern Era}
+
+\textbf{The Rise of Transfer Learning and Pretrained Models}\\
+With the advancements in computational power and large-scale datasets, CNNs have continued to improve. Pretrained models such as \textbf{Inception}\cite{szegedy2015googlenet} and \textbf{EfficientNet}\cite{efficientnet} have played a major role in enabling transfer learning, where models trained on large datasets are adapted for specific tasks.
+
+\textbf{Transfer Learning}\\
+Transfer learning allows practitioners to leverage models trained on large datasets (like ImageNet) and fine-tune them for new, domain-specific tasks. This approach saves time and computational resources while achieving high performance.
+
+\section{Relevance of CNNs to Artificial Neural Networks (ANNs)}
+CNNs are an extension of \textbf{traditional Artificial Neural Networks (ANNs)}, which generally rely on fully connected layers for classification. Unlike ANNs, CNNs use shared weights, convolutions, and pooling layers to process spatial information more efficiently.
+
+\textbf{Key differences from ANN}:
+\begin{itemize}
+    \item \textbf{Weight Sharing}: In CNNs, filters (kernels) are shared across the entire input, making them computationally more efficient compared to fully connected layers in ANNs.\cite{bengio2009learning}
+    \item \textbf{Hierarchical Feature Learning}: CNNs learn low-level features in the initial layers and combine them into more abstract concepts in deeper layers. This hierarchical feature learning is not a core principle of traditional ANNs.
+\end{itemize}
