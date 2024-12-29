@@ -1,0 +1,28 @@
+\chapter{Mathematics behind CNNs}\label{chp:4}
+\section{Convolution Operation: The Core of Feature Extraction}
+The convolution operation is a key mathematical foundation of CNNs. It allows the network to detect patterns such as edges, corners, and textures in the input data.\\
+
+\textbf{Mathematical Definition}\\
+
+As stated earlier, convolution is a mathematical operation where a filter slides (or convolves) over the input matrix to compute a feature map. In a 2D convolution, a kernel (filter matrix) $K$ of size $k \times k$ slides over the input matrix (image) $I$ to produce an output feature map $O$. The convolution operation is mathematically represented as:
+
+\begin{equation}
+    O(i,j) = \sum_{m=0}^{k-1}\sum_{n=0}^{k-1}I(i+m,j+n) \cdot K(m,n)
+\end{equation}
+
+where $(i,j)$ iterates over the image and $O(i,j)$ is the output pixel value of the feature map $O$ at the pixel position $(i,j)$.
+
+
+\section{Stride and Padding}
+
+
+\section{Pooling: Dimensionality Reduction}
+
+
+\section{Backpropagation in CNNs}
+
+
+\section{Optimization Techniques}
+
+
+\section{Regularization Techniques}

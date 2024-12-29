@@ -19,9 +19,9 @@ Convolutional Neural Networks (CNNs) are a type of deep learning model \textbf{d
 For instance, CNNs are capable of classifying an image of a cat even if the cat appears in different parts of the image.
 
 \section{Why CNNs are important in Machine Learing}
-A \textbf{Convolutional Neural Network (ConvNet/CNN)} can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image, and be able to differentiate one from the other. \textbf{The pre-processing required in a ConvNet is much lower as compared to other classification algorithms}. While in primitive methods, filters are hand-engineered; with enough training, ConvNets have the ability to learn these filters/characteristics.
+A \textbf{Convolutional Neural Network (ConvNet/CNN)} can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image, and be able to differentiate one from the other. \textbf{The pre-processing required in a ConvNet is much lower as compared to other classification algorithms}. While in primitive methods, filters are hand-engineered; with enough training, ConvNets have the ability to learn these filters/characteristics.\\
 
-\setlength{\parindent}{0pt}CNNs have revolutionized the field of computer vision and beyond by enabling machines to:
+CNNs have revolutionized the field of computer vision and beyond by enabling machines to:
 \begin{itemize}
     \item \textbf{Understand visual content}: Perform image classification, object detection, and segmentation.
     \item \textbf{Process structured data efficiently}: Learn features directly from raw input, reducing the need for manual feature engineering.
@@ -31,20 +31,19 @@ A \textbf{Convolutional Neural Network (ConvNet/CNN)} can take in an input image
 The architecture of a ConvNet is analogous to that of the connectivity pattern of Neurons in the Human Brain and was inspired by the organization of the Visual Cortex. Individual neurons respond to stimuli only in a restricted region of the visual field known as the Receptive Field. A collection of such fields overlaps to cover the entire visual area.
 
 \section{Why ConvNets over Feed-Forward Neural Nets?}
+An image is nothing but a matrix of pixel values. So why not just flatten the image (e.g. 3x3 image matrix into a 9x1 vector) and feed it to a Multi-Level Perceptron for classification purposes?\\
 
-An image is nothing but a matrix of pixel values. So why not just flatten the image (e.g. 3x3 image matrix into a 9x1 vector) and feed it to a Multi-Level Perceptron for classification purposes?
+For extremely basic binary images, this method might show an average precision score while class prediction but would fail miserably for complex images with dependent pixels.
 
-For extremely basic binary images, this method might show an average precision score while predicting classes but would fail miserably for complex images having pixel dependencies.
-
-\newpage
+% \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/figure2.png}
+    \includegraphics[width=0.35\textwidth]{images/figure2.png}
     \caption{Flattening of a 3x3 image matrix into a 9x1 vector}
     \label{fig:2}
 \end{figure}
 
-A ConvNet can \textbf{successfully capture the Spatial and Temporal dependencies} in an image through the application of relevant filters. The architecture performs a better fitting to the image dataset due to the reduction in the number of parameters involved and the reusability of weights.
+A ConvNet can \textbf{successfully capture the Spatial and Temporal dependencies} in an image through the application of relevant filters. The architecture performs a better fitting to the image dataset due to the reduction in the number of parameters involved and the reusability of weights.\\
 
 \fbox{%
     \parbox{\textwidth}{%
@@ -53,9 +52,9 @@ A ConvNet can \textbf{successfully capture the Spatial and Temporal dependencies
 }
 \begin{table}[h!]
 \centering
-\begin{tabular}{|p{0.2\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}|} 
+\begin{tabular}{|p{0.25\linewidth}|p{0.32\linewidth}|p{0.32\linewidth}|} 
   \hline
-  \rowcolor{lightgray} \textbf{Aspect} & \textbf{Feed – Forward Network (ANNs)} & \textbf{Convolutional Neural Network (CNNs)} \\ 
+  \rowcolor{lightgray} \textbf{Aspect} & \textbf{ANN} & \textbf{CNN} \\ 
   \hline\hline
   \textbf{Input Representation} & Flat, requires feature extraction & Structured (e.g., images as grids of pixels) \\ 
   \hline
@@ -73,18 +72,32 @@ A ConvNet can \textbf{successfully capture the Spatial and Temporal dependencies
 \end{table}
 
 \section{Visual Representation of CNN workflow}
+The image illustrates a simple Convolutional Neural Network (CNN) designed to classify handwritten digits from the \textbf{MNIST dataset}. The MNIST dataset contains $28 \times 28$ grayscale images of handwritten digits, with the goal to classify them into one of the $10$ output classes (from $0$ to $9$), i.e., to predict which digit (from $0$ to $9$) is represented in each image. Below are the sequence of layers the input images are passed through:\\
 
-The below image illustrates a simple CNN architecture to classify handwritten digits from MNIST dataset. The digits are passed as input images of shape $28 \times 28$ to the network and output is 10 classes (from 0 to 9) to classify the image in one of them.
+\textbf{Input Layer}:
+Each input image is $28 \times 28$ pixels, where each pixel represents a grayscale value ranging from $0$ (black) to $255$ (white). The input image is then fed into the CNN for processing.\\
 
+\textbf{Convolutional Layer}:
+The first step in the CNN is the convolutional layer, where a set of small filters or kernels is applied to the input image. These filters scan the image and detect basic features like edges or corners. This process results in feature maps that highlight the presence of certain features in different parts of the image.\\
 
-\newpage
+\textbf{Pooling Layer}:
+Next, a pooling layer reduces the spatial dimensions of the feature maps, typically using max pooling. This operation retains the most important information while reducing the amount of data, making the network more computationally efficient.\\
+
+\textbf{Flattening and Fully Connected Layers}:
+After pooling, the output is flattened into a one-dimensional vector and passed through fully connected layers. These layers combine the learned features and classify the image into one of the $10$ classes (digits $0$ to $9$).
+
+% \newpage
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{images/figure3.png}
-    \caption{A CNN sequence to classify handwritten digits}
+    \caption{A CNN architecture to classify handwritten digits from the MNIST dataset}
     \label{fig:3}
 \end{figure}
 
-The input image is passed through a sequence of layers (convolutions, pooling, and fully connected layers) to classify it into one of the 10 categories.
+\textbf{Output Layer}:
+The final layer is the output layer, where a \textbf{softmax} activation function assigns probabilities to each class. The class with the highest probability is the predicted digit.\\
+
+\textbf{Training and Classification}:
+The CNN is trained using labeled MNIST images and adjusts its internal parameters through backpropagation to minimize prediction errors. Once trained, the model can accurately classify unseen handwritten digits.
 
 
