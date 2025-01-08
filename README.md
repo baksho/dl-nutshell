@@ -11,7 +11,7 @@
 This repository contains python implementation codes of most common deep learning models and fundamental mathematical concepts behind them.
 
 #### Content
-- [ ] Artificial Neural Network
+- [X] Artificial Neural Network
 - [X] Convolutional Neural Network
 - [ ] Recurrent Neural Network
 
