@@ -1,0 +1,137 @@
+% Main file: main.tex
+% Compile this file to build the full document
+
+\documentclass[a4paper,12pt]{book} % Use book class for structured documents
+\usepackage[utf8]{inputenc}        % Support for UTF-8 characters
+\usepackage{amsmath, amssymb}      % Mathematical symbols and equations
+\usepackage{amsthm}                % For theorem-like environments
+\usepackage{graphicx, animate}     % For including images and animation
+\usepackage[font=footnotesize]{caption}
+\usepackage{hyperref}              % For hyperlinks
+% \usepackage[super]{natbib}         % Bibliography support
+\usepackage[english]{babel}
+\usepackage{geometry}              % Page layout customization
+\usepackage{titlesec}              % For customizing section titles
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+% \usepackage{cite}
+\usepackage{xcolor}
+\newcommand{\highlight}[1]{\colorbox{yellow}{#1}} % Define a custom highlight command
+\usepackage{soul}                  % For colour management 
+\usepackage[nottoc]{tocbibind}     % Includes "References" in the table of contents
+
+% Defining argmin and argmax operator
+% -----------------------------------
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+% Custom bibliography style in [number_supercript] format
+% -------------------------------------------------------
+% \makeatletter
+% \renewcommand\@biblabel[1]{[#1]} % Adds brackets in the bibliography
+% \renewcommand\@cite[2]{\textsuperscript{[#1]}} % Adds brackets in the superscript citation
+% \makeatother
+
+% Define a new theorem style for definitions
+% ------------------------------------------
+\newtheoremstyle{definition}
+  {10pt} % Space above
+  {10pt} % Space below
+  {\normalfont} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning 'normal')
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+
+% Page layout settings
+% --------------------
+\geometry{margin=1in}
+
+% Customizing Chapter Heading Style
+% ---------------------------------
+\titleformat{\chapter}[block] % 'block' means the title will be on its own line
+  {\normalfont\Huge\bfseries} % Font settings for the chapter title
+  {\thechapter}               % Numbering format (e.g., "1")
+  {1em}                       % Space between the number and title
+  {}                          % No prefix for the chapter title
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead{}                                        % clear all header fields
+\fancyhead[LO,RE]{\small\nouppercase{\rightmark}}
+\fancyfoot{}                                        % clear all footer fields
+\fancyhead[LE,RO]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Title Page
+\title{\textbf{Artificial Neural Networks (ANNs)}}
+\author{Suvinava Basak}
+\date{\today}
+\maketitle
+
+% Blank Page before Summary
+\cleardoublepage
+% \thispagestyle{empty}                             % Removes page number
+% This is a blank page
+
+% Customizing Summary Heading Size
+% --------------------------------
+\titleformat{\section}[block]
+{\normalfont\Huge\bfseries}{}{0pt}{}
+
+% Summary Page
+% ------------
+\newpage
+\vspace*{5cm} % Push the content to the middle of the page
+\section*{Abstract}
+% \addcontentsline{toc}{section}{Summary} % Add to Table of Contents
+Artificial intelligence has been making tremendous strides in closing the gap between human and computer capabilities. Both amateurs and researchers work on many facets of the area to achieve incredible results. The field of computer vision is one of several such fields.
+The goal of this field is to make it possible for machines to see and perceive the world similarly to humans. They will then be able to use this knowledge for a variety of tasks, including Natural Language Processing, Media Recreation, Image and Video Recognition, Image Analysis and Classification, Recommendation Systems, and more. Deep Learning's contributions to computer vision have been developed and refined throughout time, primarily using an algorithm, \textbf{Convolutional Neural Network}.
+\newline
+
+% \setlength{\parskip}{0em} % Adds vertical space between paragraphs
+\setlength{\parindent}{15pt} % Removes paragraph indentation (Only for Summary page)
+In this book, we will dig deeper into the realm of CNN and explore many things, starting from the \textbf{historical perspective} to the building blocks of a CNN along with their \textbf{mathematical foundations}. We will also look at different CNN architectures, e.g., \textbf{LeNet}, \textbf{AlexNet}, \textbf{VGGNet}, \textbf{GoogleNet}, \textbf{ResNet}, \textbf{MobileNet}, \textbf{EfficientNet} etc. and some of the real-life applications. Finally, we end this book with some of the current research and future trends of CNNs.
+
+% Reverting Section Heading Size
+% ------------------------------
+\titleformat{\section}[block]
+{\normalfont\large\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Table of Contents
+% -----------------
+\newpage
+\tableofcontents
+\newpage
+
+% Settings for the entire document
+% --------------------------------
+\setlength{\parskip}{0em}               % Adds vertical space between paragraphs
+\setlength{\parindent}{0pt}             % Remove paragraph indent
+
+% Include chapters
+% ----------------
+\include{chapters/chapter1}             % Introduction
+\include{chapters/chapter2}
+
+
+% Bibliography Section
+% --------------------
+% \bibliographystyle{ieeetr}            % Style for bibliography
+% \bibliographystyle{unsrt}             % Style for bibliography
+\bibliographystyle{alpha}               % Style for bibliography
+\bibliography{bibliography}             % References in bibliography.bib
+
+
+\end{document}
