@@ -33,7 +33,7 @@ The goal is to come up with a distribution on $\mathcal{X} \times \mathcal{Y} \s
 order to approach this task, we consider the family
 
 \begin{equation}
-    \mathcal{D}_{Mod}(y|x;\theta) := \sigma(w^\top x +b)^y \cdot (1 - \sigma(w^\top x +b))^{1-y}, \quad \theta = (w, b) \in \Theta
+    \mathcal{D}_{Mod}(y \mid x;\theta) := \sigma(w^\top x +b)^y \cdot (1 - \sigma(w^\top x +b))^{1-y}, \quad \theta = (w, b) \in \Theta
     \label{eqn:2}
 \end{equation}
 
@@ -48,14 +48,14 @@ of \textcolor{blue}{\emph{model}} measures on $\mathcal{X} \times \mathcal{Y} \s
     \label{eqn:3}
 \end{equation}
 
-and $\mathcal{D}_{\text{Mod}}(\cdot|x;\theta)$ is a Bernoulli probability distribution with parameter $\sigma(w^\top x + b)$. This parameter hence represents (in our model) the probability that $y=1$ is the correct label for a given $x$, while the probability that $y=0$ is the correct label for $x$ equals $1 - \sigma(w^\top x + b)$.\\
+and $\mathcal{D}_{\text{Mod}}(\cdot \mid x;\theta)$ is a Bernoulli probability distribution with parameter $\sigma(w^\top x + b)$. This parameter hence represents (in our model) the probability that $y=1$ is the correct label for a given $x$, while the probability that $y=0$ is the correct label for $x$ equals $1 - \sigma(w^\top x + b)$.\\
 
-The problem of \emph{Maximum Likelihood Estimation} seeks a parameter $\theta=(w,b)$ such that the probability of observing $\mathcal{S}$ is maximal (among $\mathcal{D}_{\text{Mod}}(\cdot|\cdot;\theta)$). Thus, given \emph{pairwise independent} random variables $X^1, \dots, X^m$ on $\mathcal{X} \times \mathcal{Y}$ distributed according to $\mathcal{D}_{\text{Mod}}(\cdot|\cdot;\theta)$, we have to maximize the \textcolor{blue}{\emph{likelihood function}}:
+The problem of \emph{Maximum Likelihood Estimation} seeks a parameter $\theta=(w,b)$ such that the probability of observing $\mathcal{S}$ is maximal (among $\mathcal{D}_{\text{Mod}}(\cdot \mid \cdot;\theta)$). Thus, given \emph{pairwise independent} random variables $X^1, \dots, X^m$ on $\mathcal{X} \times \mathcal{Y}$ distributed according to $\mathcal{D}_{\text{Mod}}(\cdot \mid \cdot;\theta)$, we have to maximize the \textcolor{blue}{\emph{likelihood function}}:
 
 \begin{equation}
     \begin{aligned}
     \mathcal{L}(\theta) &:= \mathbb{P}(\{X^1 = (x^{(1)}, y^{(1)}), \dots, X^m = (x^{(m)}, y^{(m)})\}), \quad \theta=(w,b)\\
-    & \overset{\text{i.i.d.}}{=} \prod_{i=1}^{m}\mathcal{D}_{\text{Mod}}(y^{(i)}|x^{(i)};\theta)\\
+    & \overset{\text{i.i.d.}}{=} \prod_{i=1}^{m}\mathcal{D}_{\text{Mod}}(y^{(i)}\mid x^{(i)};\theta)\\
     & = \prod_{i=1}^{m}\sigma(w^\top x^{(i)} + b)^{y^{(i)}} \cdot (1 - \sigma(w^\top x^{(i)} + b))^{1 - y^{(i)}}
     \end{aligned}
     \label{eqn:4}
@@ -64,8 +64,8 @@ The problem of \emph{Maximum Likelihood Estimation} seeks a parameter $\theta=(w
 Equivalently, we can minimize the negative log of the likelihood function as below, which gives us the \textcolor{blue}{\emph{cross entropy loss function}}:
 \begin{equation}
     \begin{aligned}
-    -\ln \mathcal{L}(\theta) &= -\ln(\prod_{i=1}^{m}\mathcal{D}_{\text{Mod}}(y^{(i)}|x^{(i)};\theta))\\
-    &= -\sum_{i=1}^{m}\ln(\mathcal{D}_{\text{Mod}}(y^{(i)}|x^{(i)};\theta))\\
+    -\ln \mathcal{L}(\theta) &= -\ln(\prod_{i=1}^{m}\mathcal{D}_{\text{Mod}}(y^{(i)} \mid x^{(i)};\theta))\\
+    &= -\sum_{i=1}^{m}\ln(\mathcal{D}_{\text{Mod}}(y^{(i)}\mid x^{(i)};\theta))\\
     &= -\sum_{i=1}^{m}\ln(\sigma(w^\top x^{(i)} + b)^{y^{(i)}} \cdot (1 - \sigma(w^\top x^{(i)} + b))^{1 - y^{(i)}})\\
     &= -\sum_{i=1}^{m}[\ln(\sigma(w^\top x^{(i)} + b)^{y^{(i)}})+ \ln(1 - \sigma(w^\top x^{(i)} + b))^{1 - y^{(i)}})]\\
     &= -\sum_{i=1}^{m}[y^{(i)}\ln(\sigma(w^\top x^{(i)} + b))+(1-y^{(i)})\ln(1 - \sigma(w^\top x^{(i)} + b))]
@@ -88,7 +88,7 @@ Once the parameter $\theta=(w,b)$ is fixed, we apply the hypothesis
 \begin{equation}
     h_{\theta}(x) :=
     \begin{cases} 
-        1, & \text{if } \mathcal{D}_{\text{Mod}}(1|x;\theta) \geq 0.5 \\
+        1, & \text{if } \mathcal{D}_{\text{Mod}}(1\mid x;\theta) \geq 0.5 \\
         0, & \text{else}
     \end{cases}
     \label{eqn:7}
@@ -217,25 +217,17 @@ While logistic regression is simple and interpretable, it has significant limita
 \subsection{Linear Decision Boundaries}
 Logistic regression assumes that the classes can be separated by a linear boundary. For datasets with complex, non-linear relationships, this assumption leads to poor performance.\\
 
-In section \ref{hypothesis}, we interpreted logistic regression as learning a hyperplane $\mathcal{E}$ that separates the space $\mathcal{X} = \mathbb{R}^d$ in two half-spaces $\{x \in \mathcal{X}\text{ }|\text{ }h_{\theta}(x) =0 \}$ and $\{x \in \mathcal{X}\text{ }|\text{ }h_{\theta}(x) =1 \}$. If the hyperplane, which we learn, classifies all objects in our training data correctly (i.e., the training data is linearly separable), then we have $h_{\theta}(x^{(i)})=y^{(i)}$ for all training examples. If we define $\mathcal{X}_{\mathcal{S}} := \{x \in \mathcal{X}\text{ }|\text{ }\exists y \in \mathcal{Y} : (x,y) \in \mathcal{S} \}$, then it follows immediately that the sets
+In section \ref{hypothesis}, we interpreted logistic regression as learning a hyperplane $\mathcal{E}$ that separates the space $\mathcal{X} = \mathbb{R}^d$ in two half-spaces $\{x \in \mathcal{X}\mid h_{\theta}(x) =0 \}$ and $\{x \in \mathcal{X}\mid h_{\theta}(x) =1 \}$. If the hyperplane, which we learn, classifies all objects in our training data correctly (i.e., the training data is linearly separable), then we have $h_{\theta}(x^{(i)})=y^{(i)}$ for all training examples. If we define $\mathcal{X}_{\mathcal{S}} := \{x \in \mathcal{X}\mid \exists y \in \mathcal{Y} : (x,y) \in \mathcal{S} \}$, then it follows immediately that the sets
 \begin{equation}
     \begin{aligned}
-        \mathcal{X}_0 &:= \{x^{(i)} \in \mathcal{X}_{\mathcal{S}}\text{ }|\text{ }y^{(i)}=0 \} \subset \{x \in \mathcal{X}\text{ }|\text{ }h_{\theta}(x)=0 \}\\
-        \mathcal{X}_1 &:= \{x^{(i)} \in \mathcal{X}_{\mathcal{S}}\text{ }|\text{ }y^{(i)}=1 \} \subset \{x \in \mathcal{X}\text{ }|\text{ }h_{\theta}(x)=1 \}
+        \mathcal{X}_0 &:= \{x^{(i)} \in \mathcal{X}_{\mathcal{S}}\mid y^{(i)}=0 \} \subset \{x \in \mathcal{X}\mid h_{\theta}(x)=0 \}\\
+        \mathcal{X}_1 &:= \{x^{(i)} \in \mathcal{X}_{\mathcal{S}}\mid y^{(i)}=1 \} \subset \{x \in \mathcal{X}\mid h_{\theta}(x)=1 \}
     \end{aligned}
     \label{eqn:17}
 \end{equation}
 are also linearly separable. Note that the property to be linearly separable depends only on the sample $\mathcal{S}$ and is hence \emph{independent} of the hyperplane which we learned. This means in particular that, if two sets $\mathcal{X}_0$ and $\mathcal{X}_1$ cannot be separated linearly, then it is \emph{impossible} to learn a hyperplane via
 logistic regression that classifies all training data correctly. In other words, we obtain $h_{\theta}(x^{(i)}) \neq y^{(i)}$ for a positive percentage of our training data (see right-hand side of Figure \ref{fig:5}).
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{images/figure5.png}
-    \caption{
-        Example of logistic regression with basis functions applied to data, which is not linearly separable $\phi_1(x) = x_1^2$ and $\phi_2(x) = x_2^2$. The computed hypothesis is $100\%$ accurate on the training data. The coloring represents the values of $\sigma(w^\top \phi(x)+b)$. On the left-hand side one can see the feature vectors $\phi^{(i)}$, which are linearly separated by the decision boundary $\{\phi \in \mathbb{R}^n\text{ }|\text{ }w^ \top\phi+b =0\}$. On the right-hand side one can see the original objects $x^{(i)}$, which are separated by the nonlinear decision boundary $\{x \in \mathbb{R}^d\text{ }|\text{ }w^ \top\phi(x)+b =0\}$ given by the basis functions.
-    }
-    \label{fig:5}
-\end{figure}
 
 \subsection{Feature Engineering Dependency}
 In order to learn nonlinear decision boundaries in the context of logistic regression, one can use \textcolor{blue}{\emph{basis functions}} (see \cite[chapter 4.3.2]{bishop2006pattern}), $\phi_1, \dots, \phi_n : \mathbb{R}^d \rightarrow \mathbb{R}$. Every one of these basis functions $\phi_j(x)$ can be nonlinear in $x$. We can interpret these functions as representing a particular \emph{pattern} of the object $x$. Thus, we call the vectors
@@ -246,7 +238,7 @@ In order to learn nonlinear decision boundaries in the context of logistic regre
         \vdots \\
         \phi_n(x^{(i)})
     \end{pmatrix}
-    \label{eq:18}
+    \label{eqn:18}
 \end{equation}
 
 also \textcolor{blue}{\emph{feature vectors}}. The feature vector $\phi^{(i)}$ represents the object $x^{(i)}$ via the extracted pattern $\phi_1(x^{(i)}), \dots, \phi_n(x^{(i)})$, which are nothing but the coordinates of $\phi^{(i)}$. If the basis functions are given (or chosen), then we can apply logistic regression as described before with the crucial
@@ -265,58 +257,136 @@ If we apply logistic regression to data, which was transformed via basis functio
     \label{eqn:19}
 \end{equation}
 
-with associated decision boundaries $\{x \in \mathcal{X} \text{ }|\text{ }w^\top \phi(x) +b =0 \}$.
+with associated decision boundaries $\{x \in \mathcal{X} \mid w^\top \phi(x) +b =0 \}$.
 
 \subsection{High-dimensional Data}
-In cases where the number of features is very large (e.g., image data), logistic regression struggles due to overfitting or computational inefficiency.
+In high-dimensional data, where the number of features greatly exceeds the number of observations (e.g., image data with thousands of pixels as features), logistic regression faces two main challenges:
+\begin{itemize}
+    \item \emph{Overfitting}: With so many features, the model tends to fit the noise in the data instead of capturing the true underlying patterns, resulting in poor generalization to new data.
+    \item \emph{Computational inefficiency}: Logistic regression involves solving optimization problems that become computationally expensive as the number of features increases, especially when regularization techniques (like $\ell_1$ or $\ell_2$ penalties) are applied to mitigate overfitting.
+\end{itemize}
+
+These issues make logistic regression less suitable for high-dimensional data, often requiring feature reduction techniques (e.g., principal component analysis) or alternative models like neural networks or tree-based methods.
 
 \subsection{Multi-class Classification}
-Logistic regression inherently handles only binary classification. Extending it to multi-class problems (e.g., through one-vs-rest or softmax regression) increases complexity.
+Simply put, logistic regression for binary classification predicts the probability of an outcome belonging to class $y=1$ using the \emph{sigmoid function}:
+\begin{equation}
+    \mathbb{P}(y=1\mid x) = \sigma(z) = \frac{1}{1 + e^{(-z)}},\quad \text{where }z = w^\top x+b
+    \label{eqn:20}
+\end{equation}
+
+For binary classification, the predicted class is:
+\begin{equation}
+    \hat{y}=
+    \begin{cases}
+        1, \quad \text{if } \mathbb{P}(y=1\mid x) \geq 0.5,\\
+        0, \quad \text{otherwise}
+    \end{cases}
+    \label{eqn:21}
+\end{equation}
+
+As we can see, logistic regression is naturally designed for binary classification, where the output is either $0$ or $1$. To handle multi-class classification, two common approaches are used:
+\begin{itemize}
+    \item \emph{One-vs-Rest (OvR)}: The multi-class problem is divided into multiple binary classification problems. Mathematically, for $K$-classes, we train $K$ binary logistic regression models. For each class, a separate binary classifier is trained to distinguish that class from all others. So, each model $k$ predicts $\mathbb{P}(y=k\mid x)$, i.e., whether the input belongs to class $k$ or not:
+    \begin{equation}
+        \mathbb{P}(y=k\mid x) = \frac{1}{1 + e^{(-z_k)}},\quad \text{where }z_k = w_k^\top x+b_k
+        \label{eqn:22}
+    \end{equation}
+
+    And then during prediction, compute probabilities for all $K$ models and assign the class with the highest probability:
+    \begin{equation}
+        \hat{y} = \argmax_{k} \mathbb{P}(y=k\mid x)
+        \label{eqn:23}
+    \end{equation}
+    
+    \item \emph{Softmax Regression (Multinomial Logistic Regression)}: This extends logistic regression by using the softmax function to compute probabilities for all classes simultaneously. Instead of separate models, softmax regression models all classes simultaneously. It predicts the probability for each class $k$ using the softmax function:
+    \begin{equation}
+        \mathbb{P}(y=k\mid x) = \frac{e^{z_k}}{\sum_{j=1}^{k}e^{z_j}}, \quad \text{where }z_k = w_k^\top x + b_k
+        \label{eqn:24}
+    \end{equation}
+    
+    The model outputs a probability distribution over all classes, and the predicted class is the one with the highest softmax probability:
+    \begin{equation}
+        \hat{y} = \argmax_{k} \mathbb{P}(y=k\mid x)
+        \label{eqn:25}
+    \end{equation}
+\end{itemize}
+
+While OvR is simpler to implement, it requires training $K$ separate models (one per class) and combines their outputs during prediction. Softmax regression, on the other hand, handles all classes in a single model but involves computing exponentials and normalizing over all classes, increasing computational cost. In both approaches, the objective function is typically cross-entropy loss, adapted for multi-class scenarios.
 
 
 \section{Role of Basis Functions in Logistic Regression}
 As we have seen in section \ref{limitations}, to address the limitation of linear decision boundaries, \emph{basis functions} are introduced. These are transformations of the input features that allow logistic regression to model non-linear relationships(see \cite[chapter 4.3.2]{bishop2006pattern})\\
 
-\vspace{10mm}
-\textbf{TO BE CONTINUED... }
-\vspace{10mm}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{images/figure5.png}
+    \caption{
+        Example of logistic regression with basis functions applied to data, which is not linearly separable $\phi_1(x) = x_1^2$ and $\phi_2(x) = x_2^2$. The computed hypothesis is $100\%$ accurate on the training data. The coloring represents the values of $\sigma(w^\top \phi(x)+b)$. On the left-hand side one can see the feature vectors $\phi^{(i)}$, which are linearly separated by the decision boundary $\{\phi \in \mathbb{R}^n\mid w^ \top\phi+b =0\}$. On the right-hand side one can see the original objects $x^{(i)}$, which are separated by the nonlinear decision boundary $\{x \in \mathbb{R}^d\mid w^ \top\phi(x)+b =0\}$ given by the basis functions.
+    }
+    \label{fig:5}
+\end{figure}
 
+\begin{example}[Quadratic Basis Functions]
+In Figure \ref{fig:5}, we reconsider the example from Figure \ref{fig:2} (right-hand side). By visualization of the data, it is obvious that the training objects cannot
+be separated linearly by hyperplane according to their labels (stars vs. crosses). The depicted decision boundary is optimal with respect to a (standard) logistic regression performed on the training data. However, it classifies only $68\%$ of the training data correctly. But if we (simply) introduce the basis functions $\phi_1(x)=x_1^2$ and $\phi_2(x)=x_2^2$, then the feature vectors $\phi^{(1)}, \dots, \phi^{(m)}$ are linearly separable according to their labels and we find a corresponding linear hyperplane
+$(w, b)$ via logistic regression; see left-hand side of the Figure \ref{fig:5}. In the space $\mathcal{X}$ of objects this corresponds to a \emph{nonlinear} separation. It holds that
+\begin{equation}
+    h_{\theta}(x)=
+    \begin{cases}
+        1, \quad \text{if }w_1x_1^2 + w_2x_2^2 +b \geq 0\\
+        0, \quad \text{if }w_1x_1^2 + w_2x_2^2 +b < 0
+    \end{cases}
+    \label{eqn:26}
+\end{equation}
 
+The sets $x \in \mathcal{X}\mid h_{\theta}(x)=0$ and $x \in \mathcal{X}\mid h_{\theta}(x)=1$ are hence separated by a quadratic function; see right-hand side of the Figure \ref{fig:5}. 
+\end{example}
 
+This example was quite simple in the sense that we were able to predict by a simple visualization of the training data that they should be linearly separable by projecting the data into a higher-dimensional space by using a quadratic function (a circle). In general, one has to handle data in dimensions much larger than $2$ or $3$ and hence it is not always possible to make an educated preliminary guess about suitable basis functions $\phi_i$.\\
 
+\begin{example}[Polynomial Basis Functions]
+Since in real life, it is not always possible to guess a suitable basis functions to make the high-dimensional training data linearly separable, we resort to a general approach. A reasonable general approach is to assume that our objects are separable by the real zero set of a multivariate real polynomial of (total) degree $\kappa$ (with $\kappa$ sufficiently large). If our objects are located in a $d$-dimensional space, the resulting basis functions are monomials in $d$ variables of degree at most $\kappa$. These are, for example, $x_1, x_2^{\kappa-2}x_3 \text{ or } x_1x_2x_3 \text{ (if }\kappa \geq 3\text{)}$. The associated nonlinear functions are then polynomials
 
-\textbf{Example: Polynomial Basis Functions}
-Consider a dataset where two classes are not linearly separable in the original feature space. By transforming the features using quadratic functions (e.g., $x_1^2$, $x_2^2$, $x_1x_2$), we can project the data into a higher-dimensional space where it becomes linearly separable.\\
+\begin{equation}
+    \sum_{j=1}^{d} w_j \underbrace{x_j}_{\phi_j(x)} + 
+    \sum_{j=1}^{d} \sum_{k=j}^{d} w_{jk} \underbrace{x_j x_k}_{\phi_{jk}(x)} + 
+    \sum_{j=1}^{d} \sum_{k=j}^{d} \sum_{l=k}^{d} w_{jkl} \underbrace{x_j x_k x_l}_{\phi_{jkl}(x)} + \cdots
+    \label{eqn:27}
+\end{equation}
 
-However, this approach has challenges:
+of degree (at most) $\kappa$. While this approach is very general and therefore powerful, it has a crucial downside: the number of monomials in $d$ variable of total degree at most $\kappa$, is
+
+\begin{equation}
+    \binom{d+\kappa}{d} \models \frac{(d+1) \cdots (d+\kappa)}{\kappa!} = \mathcal{O}(d^{\kappa})
+    \label{eqn:28}
+\end{equation}
+\end{example}
+
+While introducing basis functions solve the primary problem of handling linearly non-separable data, this approach has challenges:
 \begin{itemize}
     \item \textbf{Choosing the Right Basis Functions}: It requires domain knowledge or trial-and-error to select suitable transformations.
-    \item \textbf{Dimensional Explosion}: The number of basis functions grows exponentially with the degree of the polynomial and the number of input features. For example, a second-degree polynomial in 400 features produces over 80,000 basis functions.\cite{hastie2009elements}
+    \item \textbf{Dimensional Explosion}: The number of basis functions grows exponentially with the degree of the polynomial and the number of input features. For example, if we consider objects in dimension $d = 400$, e.g., in a small grey scale pictures with $20 \times 20$ pixels, and simply consider all monomials of degree at most $\kappa = 2$, then we already obtain $80601$ basis functions.\cite{hastie2009elements}
 \end{itemize}
 
 \section{Transition to Neural Networks}
-Artificial Neural Networks (ANNs) solve the limitations of logistic regression by \textbf{learning the basis functions automatically}. Instead of manually defining transformations, ANNs use layers of neurons to hierarchically extract features from the data.\\
+Artificial Neural Networks (ANNs) (see \cite[chapter 5]{bishop2006pattern} and \cite[chapter 6]{goodfellow2016deep}) solve the limitations of logistic regression by \emph{learning} the basis functions automatically using layers of neurons, instead of manually defining transformations. Thus, on the one hand, they allow us to avoid choosing basis functions by hand; on the other hand, we do not have to create gigantic polynomials as displayed before.\\
+
+Using learned basis functions, neural networks compute very effective hierarchical
+representations of input data (i.e., hierarchically extract features from the data) such that we only need to consider a relatively small number of basis functions.\\
 
 \textbf{How ANNs Improve on Logistic Regression}:
-\begin{enumerate}
+\begin{itemize}
     \item \textbf{Automatic Feature Learning}:
-    \begin{itemize}
-        \item Neural networks learn non-linear transformations directly from the data.
-        \item For example, convolutional layers in CNNs extract spatial patterns like edges and shapes.
-    \end{itemize}
-    \item \textbf{Scalability}:
-    \begin{itemize}
-        \item ANNs can scale to millions of parameters, enabling them to model high-dimensional data efficiently.
-    \end{itemize}
-    \item \textbf{Universal Approximation}:
-    \begin{itemize}
-        \item A neural network with sufficient depth and width can approximate any function, linear or non-linear.
-    \end{itemize}
-    \item \textbf{Multi-Class Capability}:
-    \begin{itemize}
-        \item Using the \textbf{softmax activation function}, ANNs natively support multi-class classification tasks.
-    \end{itemize}
-\end{enumerate}
+    Neural networks learn non-linear transformations directly from the data. For example, convolutional layers in CNNs extract spatial patterns like edges and shapes.
+    
+    \item \textbf{Scalability}: ANNs can scale to millions of parameters, enabling them to model high-dimensional data efficiently.
+    
+    \item \textbf{Universal Approximation}: A neural network with sufficient depth and width can approximate any function, linear or non-linear.
+
+    \item \textbf{Multi-Class Capability}: Using the \textbf{softmax activation function}, ANNs natively support multi-class classification tasks.
+
+\end{itemize}
 Thus, ANNs represent a significant advancement over traditional logistic regression, paving the way for breakthroughs in deep learning.
 
 

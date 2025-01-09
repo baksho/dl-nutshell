@@ -49,6 +49,36 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
+% Define a new theorem style for examples
+% ------------------------------------------
+\newtheoremstyle{example}
+  {10pt} % Space above
+  {10pt} % Space below
+  {\normalfont} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning 'normal')
+
+\theoremstyle{example}
+\newtheorem{example}{Example}[section]
+
+% Define a new theorem style for remarks
+% ------------------------------------------
+\newtheoremstyle{remark}
+  {10pt} % Space above
+  {10pt} % Space below
+  {\normalfont} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning 'normal')
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
 
 % Page layout settings
 % --------------------
@@ -124,6 +154,7 @@ In this book, we will dig deeper into the realm of CNN and explore many things, 
 % ----------------
 \include{chapters/chapter1}             % Introduction
 \include{chapters/chapter2}
+\include{chapters/chapter3}
 
 
 % Bibliography Section
