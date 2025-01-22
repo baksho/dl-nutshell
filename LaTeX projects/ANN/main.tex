@@ -20,6 +20,9 @@
 \newcommand{\highlight}[1]{\colorbox{yellow}{#1}} % Define a custom highlight command
 \usepackage{soul}                  % For colour management 
 \usepackage[nottoc]{tocbibind}     % Includes "References" in the table of contents
+\usepackage{algorithm}             % For writing algorithms
+\usepackage{algorithmic}           % For algorithmic environments
+\renewcommand{\thealgorithm}{\thesection.\arabic{algorithm}}  % Modify algorithm number to include section number
 
 % Defining argmin and argmax operator
 % -----------------------------------
